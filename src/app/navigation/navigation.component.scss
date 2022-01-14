@@ -8,7 +8,7 @@ nav {
   justify-content: space-between;
 
   .logo {
-    margin-left: 20px;
+    margin: auto;
 
     img {
       height: 45px;
@@ -17,6 +17,7 @@ nav {
 
   .nav-links-container {
     width: 40%;
+    margin: auto;
 
     ul {
       display: flex;
@@ -32,9 +33,8 @@ nav {
   }
 
   .cart {
-    display: inline;
-    vertical-align: middle;
-    margin-right: 30px;
+    margin: auto;
+
     img {
       height: 35px;
     }
