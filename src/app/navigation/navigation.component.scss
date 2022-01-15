@@ -8,15 +8,14 @@ nav {
   justify-content: space-between;
 
   .logo {
-    margin: auto;
-
+    margin-left: 25px;
     img {
       height: 45px;
     }
   }
 
   .nav-links-container {
-    width: 40%;
+    width: 50%;
     margin: auto;
 
     ul {
@@ -29,14 +28,25 @@ nav {
       color: white;
       list-style-type: none;
       font-weight: bold;
+      cursor: pointer;
+    }
+
+    li:hover {
+      color: #46b2e7;
     }
   }
 
   .cart {
-    margin: auto;
+    margin-top: 5px;
+    margin-right: 25px;
 
     img {
       height: 35px;
+    }
+
+    img:hover {
+      cursor: pointer;
+      transform: scale(1.2);
     }
 
   }
