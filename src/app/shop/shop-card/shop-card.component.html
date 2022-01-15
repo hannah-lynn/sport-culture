@@ -3,7 +3,11 @@
     <img [src]="product.mainImage" alt="product image" />
   </div>
   <div class="product-info">
-    <div class="product-price">{{ product.price.amount }}</div>
     <div class="product-name">{{ product.name }}</div>
+    <div class="product-price">
+      {{
+        product.price.amount | currency: product.price.currency:"symbol":"1.2-2"
+      }}
+    </div>
   </div>
 </div>
