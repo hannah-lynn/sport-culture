@@ -5,17 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { ShopComponent } from './shop/shop.component';
-import { ShopCardComponent } from './shop/shop-card/shop-card.component';
+import { ProductCardComponent } from './shop/product-card/product-card.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ShopDetailsComponent } from './shop/shop-details/shop-details.component';
+import { ProductDetailsComponent } from './shop/product-details/product-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     ShopComponent,
-    ShopCardComponent,
-    ShopDetailsComponent
+    ProductCardComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
