@@ -29,6 +29,11 @@ nav {
       list-style-type: none;
       font-weight: bold;
       cursor: pointer;
+
+      .shop-link {
+        text-decoration: none;
+        color: inherit;
+      }
     }
 
     li:hover {

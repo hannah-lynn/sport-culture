@@ -7,13 +7,15 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { ShopComponent } from './shop/shop.component';
 import { ShopCardComponent } from './shop/shop-card/shop-card.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ShopDetailsComponent } from './shop/shop-details/shop-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     ShopComponent,
-    ShopCardComponent
+    ShopCardComponent,
+    ShopDetailsComponent
   ],
   imports: [
     BrowserModule,
