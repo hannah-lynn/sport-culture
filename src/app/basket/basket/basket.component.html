@@ -1,0 +1,9 @@
+<div class="basket-container">
+  <h2>Basket</h2>
+  <div class="items-container" *ngIf="items">
+    <div class="items" *ngFor="let item of items">
+      <app-basket-item [item]="item"></app-basket-item>
+    </div>
+    <div class="empty" *ngIf="!items">Your basket is empty</div>
+  </div>
+</div>

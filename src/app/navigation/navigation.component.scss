@@ -42,16 +42,21 @@ nav {
   }
 
   .cart {
+    position: relative;
     margin-top: 5px;
     margin-right: 25px;
 
-    img {
-      height: 35px;
-    }
-
-    img:hover {
+    svg:hover {
       cursor: pointer;
       transform: scale(1.2);
+    }
+
+    .num-items {
+      position: absolute;
+      color: white;
+      top: 16px;
+      right: 12px;
+      font-size: 12px;
     }
 
   }

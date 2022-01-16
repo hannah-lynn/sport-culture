@@ -17,9 +17,6 @@ export class ProductCardComponent implements OnInit {
 
 
   public openProduct(id: string): void {
-    console.log(this.product)
-  console.log('id :', id);
-
     void this._router.navigateByUrl(`/shop/${Number(id)}`);
   }
 }

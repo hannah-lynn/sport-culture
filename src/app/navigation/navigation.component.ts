@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { BasketDataService } from '../services/basket.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  public totalItems: number = 0;
+
+  public items: number = 0;
+
+  constructor(private _basketService: BasketDataService, private _router: Router) {
+  }
 
   ngOnInit(): void {
+    this.totalItems = this._basketService.getTotalItems();
+  }
+
+  public goToBasket(): void {
+    this._router.navigateByUrl('/basket');
   }
 
 }
