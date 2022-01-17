@@ -17,6 +17,7 @@
       <div class="product-stock" *ngIf="product.stockStatus !== 'IN STOCK'">
         Out of stock
       </div>
+      <p>{{ product.colour }}</p>
       <div class="size-container">
         <div class="sizes" *ngFor="let size of product.sizes">
           <button class="size-btn" (click)="itemSize = size">
@@ -25,7 +26,7 @@
         </div>
       </div>
       <div class="buy">
-        <button class="buy-btn" (click)="addToBasket(product.id)">
+        <button class="buy-btn" (click)="addToBasket(product)">
           {{ btnText }}
         </button>
       </div>

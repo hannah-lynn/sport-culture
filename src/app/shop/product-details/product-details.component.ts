@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IProduct } from 'src/app/interfaces/products';
+import { IProduct } from 'src/app/interfaces/product';
 import { ShopDataService } from 'src/app/services/shop.service';
 import { IBasketItem } from 'src/app/interfaces/basket-item';
 import { BasketDataService } from 'src/app/services/basket.service';
@@ -29,11 +29,11 @@ export class ProductDetailsComponent implements OnInit {
     this._getProduct();
   }
 
-  public addToBasket(id: string): boolean | void {
+  public addToBasket(product: IProduct): boolean | void {
     if(!this.itemSize) {
       return this.noSize = true;
     }
-    this._basketService.addItem(id, this.itemSize)
+    this._basketService.addItem(product, this.itemSize)
       this.btnText = 'Added!';
       setTimeout(() => {
         this.btnText = 'Add to bag';

@@ -1,5 +1,7 @@
+import { IProduct } from "./product";
+
 export interface IBasketItem {
-  id: string,
+  product: IProduct,
   size: number,
   quantity: number
 }

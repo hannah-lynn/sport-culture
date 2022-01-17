@@ -1,6 +1,6 @@
 export interface IProduct {
   brandName: string;
-  color: string;
+  colour: string;
   description: string;
   id: string;
   mainImage: string;

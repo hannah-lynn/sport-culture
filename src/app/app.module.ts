@@ -9,7 +9,6 @@ import { ProductCardComponent } from './shop/product-card/product-card.component
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailsComponent } from './shop/product-details/product-details.component';
 import { BasketComponent } from './basket/basket/basket.component';
-import { BasketItemComponent } from './basket/basket-item/basket-item.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,6 @@ import { BasketItemComponent } from './basket/basket-item/basket-item.component'
     ProductCardComponent,
     ProductDetailsComponent,
     BasketComponent,
-    BasketItemComponent
   ],
   imports: [
     BrowserModule,

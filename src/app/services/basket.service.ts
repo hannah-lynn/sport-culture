@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
-import { Observable } from 'rxjs';
 import { IBasketItem } from "../interfaces/basket-item";
+import { IProduct } from '../interfaces/product';
 
 
 @Injectable({
@@ -25,30 +25,30 @@ export class BasketDataService {
   }
 
   public removeItem(id: string, size: number): void {
-    console.log('remove');
     let basket = this.getBasket();
 
     const item = this._findExactItem(basket, id, size);
 
-    if (item) {
+    if (item && item.quantity > 1) {
       item.quantity--
+    } else if (item) {
+      basket.splice(basket.indexOf(item), 1)
     }
 
     localStorage.setItem('basket', JSON.stringify(basket));
   }
 
-  public addItem(id: string, size: number): void {
-    console.log('add');
+  public addItem(product: IProduct, size: number): void {
     let basket = this.getBasket();
 
     const item = {
-          id,
+          product,
           size,
           quantity: 1
         }
     if (basket) {
       // check if item already in bag
-      const duplicate = this._findExactItem(basket, id, size);
+      const duplicate = this._findExactItem(basket, product.id, size);
 
       if (duplicate) {
         duplicate.quantity++
@@ -63,7 +63,7 @@ export class BasketDataService {
   }
 
   private _findExactItem(basket: IBasketItem[], id: string, size: number): IBasketItem | undefined {
-    return _.find(basket, (o) => o.id === id && o.size === size);
+    return _.find(basket, (o) => o.product.id === id && o.size === size);
   }
 
 }
