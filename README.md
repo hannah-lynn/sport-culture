@@ -2,26 +2,45 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
 
-## Development server
+## Details
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This is a WIP shop app. 
 
-## Code scaffolding
+The user can browse the products, click the products for more details, choose a size and add to the basket. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+On the product details the user can see recently viewed products, they can click on the product and it will take them to that item.
 
-## Build
+The user can view the basket by clicking on the bag on the right of the nav bar.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+If the uset tries to add an item to the bag without selecting a size an error will appear.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## How
 
-## Running end-to-end tests
+The project was built starting with the nav bar, then building the shop, shop card and then creating the shop service to get the products using httpClient.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Once the products were displaying I added some basic styling so it looks similar to an online store. 
 
-## Further help
+The product cards are displayed by looping through the products and the data is passed from parent (shop) to child component using the @Input decorator.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+A product details component was created to display more information. The product id was taken from the route so it could be found in the products - using lodash.
+
+The basket service was created with methods to add to the basket. This utilised localStorage, with more time I will update this to use rsjx. 
+
+After this, the basket was created and styled, product info is taken from the data in localStorage.
+
+Finally, recently viewed items has been created which uses the same card from the shop, it also needs some work (see To Do list).
+
+
+## To Do
+
+- [ ] Change to use rsjx Observable/BehaviourSubject for adding/updating the basket and basket total on nav
+- [ ] Mobile styling on basket
+- [ ] Overall design to be improved
+- [ ] Better handling of size selection
+- [ ] Handle recently viewed - when they are looking at a product this same product shouldn;t be displayed here
+- [ ] Style recently viewed card without price and make smaller
+- [ ] Add hero section
+- [ ] Nav bar bag to be changed to better icon
+
+
