@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { IProduct } from '../../interfaces/product'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -17,6 +17,8 @@ export class ProductCardComponent implements OnInit {
 
 
   public openProduct(id: string): void {
+    // handles reload when same from same url with change of id
+    this._router.routeReuseStrategy.shouldReuseRoute = function() { return false; };
     void this._router.navigateByUrl(`/shop/${Number(id)}`);
   }
 }

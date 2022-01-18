@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
+import { BehaviorSubject } from 'rxjs';
 import { IBasketItem } from "../interfaces/basket-item";
+import { Injectable } from '@angular/core';
 import { IProduct } from '../interfaces/product';
 
 
@@ -8,7 +9,11 @@ import { IProduct } from '../interfaces/product';
   providedIn: 'root'
 })
 export class BasketDataService {
+
+  public basket = new BehaviorSubject([]);
+
   constructor() {}
+
 
   public getBasket(): IBasketItem[] {
     return JSON.parse(<string>localStorage.getItem('basket'));
@@ -16,7 +21,6 @@ export class BasketDataService {
 
   public getTotalItems(): number {
     const basket = this.getBasket();
-    console.log('basket :', basket);
     let totalQuantity = 0
     for (const item of basket) {
       totalQuantity += item.quantity

@@ -101,4 +101,26 @@
     }
   }
 
+  .recent {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+
+    h3 {
+      align-self: center;
+      margin-bottom: 2rem;
+    }
+
+    .recent-items {
+      display: flex;
+      margin: 3rem 0;
+      align-self: center;
+    }
+
+    @media screen and (max-width: 767px) {
+      .recent-items {
+        flex-direction: column;
+      }
+    }
+  }
 }

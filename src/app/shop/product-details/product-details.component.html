@@ -40,4 +40,12 @@
       </p>
     </div>
   </div>
+  <div class="recent">
+    <h3>Recently Viewed</h3>
+    <div class="recent-items">
+      <div *ngFor="let item of recentlyViewed">
+        <app-product-card [product]="item"></app-product-card>
+      </div>
+    </div>
+  </div>
 </div>

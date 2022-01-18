@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
 import { Component, OnInit } from '@angular/core';
+import { BasketDataService } from 'src/app/services/basket.service';
 import { IBasketItem } from 'src/app/interfaces/basket-item';
 import { IProduct } from 'src/app/interfaces/product';
-import { BasketDataService } from 'src/app/services/basket.service';
 
 @Component({
   selector: 'app-basket',
