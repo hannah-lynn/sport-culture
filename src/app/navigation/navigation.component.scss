@@ -53,9 +53,11 @@ nav {
     .num-items {
       position: absolute;
       color: white;
-      top: 16px;
-      right: 12px;
+      top: 14px;
+      text-align: center;
       font-size: 12px;
+      height: 100%;
+      width:100%;
       cursor: pointer;
     }
 
