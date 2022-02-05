@@ -64,6 +64,11 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     if (!recent) {
       recent = [];
     }
+    for (const item of recent) {
+      if (item.id === this.product.id) {
+        return;
+      }
+    }
     if (recent?.length > 1) {
       recent.pop();
     }
