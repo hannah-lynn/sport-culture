@@ -9,8 +9,11 @@ nav {
 
   .logo {
     margin-left: 25px;
-    img {
-      height: 45px;
+    a {
+      cursor: pointer;
+      img {
+        height: 45px;
+      }
     }
   }
 
@@ -21,7 +24,7 @@ nav {
     ul {
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: space-evenly;
     }
 
     li {
@@ -30,7 +33,7 @@ nav {
       font-weight: bold;
       cursor: pointer;
 
-      .shop-link {
+      .shop-link, .home-link {
         text-decoration: none;
         color: inherit;
       }
