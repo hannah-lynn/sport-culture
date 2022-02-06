@@ -43,8 +43,10 @@
   <div class="recent">
     <h3>Recently Viewed</h3>
     <div class="recent-items">
-      <div *ngFor="let item of recentlyViewed">
-        <app-product-card [product]="item"></app-product-card>
+      <div *ngFor="let item of recentlyViewed | slice: 0:3">
+        <ng-container *ngIf="item.id !== product.id">
+          <app-product-card [product]="item"></app-product-card>
+        </ng-container>
       </div>
     </div>
   </div>

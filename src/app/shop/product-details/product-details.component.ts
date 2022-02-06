@@ -69,9 +69,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         return;
       }
     }
-    if (recent?.length > 1) {
-      recent.pop();
-    }
     recent.unshift(this.product);
     localStorage.setItem('recent', JSON.stringify(recent));
   }
