@@ -28,7 +28,7 @@ The basket service was created with methods to add to the basket. This utilised 
 
 After this, the basket was created and styled, product info is taken from the data in localStorage.
 
-Finally, recently viewed items has been created which uses the same card from the shop, it also needs some work (see To Do list).
+Finally, recently viewed items has been created, which uses the same card from the shop, it also needs some work (see To Do list).
 
 ## To Do
 
