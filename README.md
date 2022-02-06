@@ -39,5 +39,5 @@ Finally, recently viewed items has been created which uses the same card from th
 - [x] Recently viewed shouldn't duplicate item
 - [x] Handle recently viewed - when they are looking at a product this same product shouldn't be displayed here
 - [ ] Style recently viewed card without price and make smaller
-- [ ] Add hero section
+- [x] Add hero section
 - [x] Nav bar bag to be changed to better icon
