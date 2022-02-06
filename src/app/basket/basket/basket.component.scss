@@ -24,6 +24,10 @@
         margin-left: 1rem;
         width: 260px;
 
+        @media screen and (max-width: 400px) {
+          width: 200px;
+        }
+
         .numbers {
           display: flex;
           align-content: center;

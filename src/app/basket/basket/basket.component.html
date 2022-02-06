@@ -6,6 +6,9 @@
         <div class="product-info">
           <h4 class="name">{{ item.product.name }}</h4>
           <p class="size">Size: {{ item.size }}</p>
+          <div *ngIf="innerWidth <= 400" class="price">
+            {{ item.product.price.amount | currency: "GBP":"symbol":"1.2-2" }}
+          </div>
         </div>
         <div class="numbers">
           <div class="quantity">
@@ -13,7 +16,7 @@
             <div class="total">{{ item.quantity }}</div>
             <button class="add-item" (click)="add(item)">+</button>
           </div>
-          <div class="price">
+          <div *ngIf="innerWidth > 400" class="price">
             {{ item.product.price.amount | currency: "GBP":"symbol":"1.2-2" }}
           </div>
         </div>

@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { BasketDataService } from 'src/app/services/basket.service';
 import { IBasketItem } from 'src/app/interfaces/basket-item';
 import { IProduct } from 'src/app/interfaces/product';
@@ -10,14 +10,22 @@ import { IProduct } from 'src/app/interfaces/product';
   styleUrls: ['./basket.component.scss']
 })
 export class BasketComponent implements OnInit {
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    const w = event.target as Window;
+    this.innerWidth = w.innerWidth;
+  }
+
   public product!: IProduct;
   public cost: number = 0;
   public items: IBasketItem[] = [];
+  public innerWidth: number = 0;
 
 
   constructor(private _basketService: BasketDataService) { }
 
   ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
     this._getBasketItems();
   }
 

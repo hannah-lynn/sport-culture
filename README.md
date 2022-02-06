@@ -33,7 +33,7 @@ Finally, recently viewed items has been created which uses the same card from th
 ## To Do
 
 - [ ] Change to use rsjx Observable/BehaviourSubject for adding/updating the basket and basket total on nav
-- [ ] Mobile styling on basket
+- [x] Mobile styling on basket
 - [ ] Overall design to be improved
 - [ ] Better handling of size selection
 - [x] Recently viewed shouldn't duplicate item
