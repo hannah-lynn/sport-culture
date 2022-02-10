@@ -21,7 +21,7 @@ export class NavigationComponent implements OnInit {
   }
 
   public goToBasket(): void {
-    this._router.navigateByUrl('/basket');
+    this._router.navigateByUrl('/sport-culture/basket');
   }
 
 }
