@@ -40,7 +40,7 @@
       </p>
     </div>
   </div>
-  <div class="recent">
+  <div class="recent" *ngIf="recentlyViewed && recentlyViewed[0].id !== product.id">
     <h3>Recently Viewed</h3>
     <div class="recent-items">
       <div *ngFor="let item of recentlyViewed | slice: 0:3">

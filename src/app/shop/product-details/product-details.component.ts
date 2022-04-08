@@ -11,23 +11,28 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss']
+  styleUrls: ['./product-details.component.scss'],
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
-
   public product!: IProduct;
   public itemSize!: number;
   public noSize: boolean = false;
-  public btnText: string = 'Add to bag'
+  public btnText: string = 'Add to bag';
   public selected: boolean = false;
-  public recentlyViewed!: IProduct[];
+  public recentlyViewed?: IProduct[];
   private _productId: string = '';
   private _basket: IBasketItem[] = [];
   private _subscription!: Subscription;
 
-  constructor(private _route: ActivatedRoute, private _shopService: ShopDataService, private _basketService: BasketDataService, private _recentService: RecentService) {
+  constructor(
+    private _route: ActivatedRoute,
+    private _shopService: ShopDataService,
+    private _basketService: BasketDataService,
+    private _recentService: RecentService
+  ) {
     this._basket = this._basketService.getBasket();
     this.recentlyViewed = this._recentService.getRecent();
+    console.log('this.recentlyViewed :', this.recentlyViewed);
   }
 
   ngOnInit(): void {
@@ -35,14 +40,13 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this._getProduct();
   }
 
-
   ngOnDestroy(): void {
     this._subscription.unsubscribe();
   }
 
   public addToBasket(product: IProduct): boolean | void {
-    if(!this.itemSize) {
-      return this.noSize = true;
+    if (!this.itemSize) {
+      return (this.noSize = true);
     }
     this._basketService.addItem(product, this.itemSize);
     this.noSize = false;
@@ -53,10 +57,12 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   }
 
   private _getProduct(): void {
-    this._subscription = this._shopService.getProducts().subscribe((data: any) => {
-      this.product = _.find(data.data, (o) => o.id === this._productId);
-      this._addToRecent();
-    });
+    this._subscription = this._shopService
+      .getProducts()
+      .subscribe((data: any) => {
+        this.product = _.find(data.data, (o) => o.id === this._productId);
+        this._addToRecent();
+      });
   }
 
   private _addToRecent(): void {
@@ -72,5 +78,4 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     recent.unshift(this.product);
     localStorage.setItem('recent', JSON.stringify(recent));
   }
-
 }
