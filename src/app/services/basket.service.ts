@@ -1,31 +1,49 @@
 import * as _ from 'lodash';
-import { BehaviorSubject } from 'rxjs';
-import { IBasketItem } from "../interfaces/basket-item";
-import { Injectable } from '@angular/core';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
+import { IBasketItem } from '../interfaces/basket-item';
+import { Injectable, OnDestroy } from '@angular/core';
 import { IProduct } from '../interfaces/product';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class BasketDataService {
+export class BasketDataService implements OnDestroy {
+  public basket = new BehaviorSubject<IBasketItem[]>([]);
+  public total = new Subject<number>();
 
-  public basket = new BehaviorSubject([]);
+  basketItems = this.basket.asObservable();
+  totalItems = this.total.asObservable();
+  private _subscription!: Subscription;
 
   constructor() {}
 
-
-  public getBasket(): IBasketItem[] {
-    return JSON.parse(<string>localStorage.getItem('basket'));
+  ngOnDestroy(): void {
+    this._subscription.unsubscribe();
   }
 
-  public getTotalItems(): number {
-    const basket = this.getBasket();
-    let totalQuantity = 0
-    for (const item of basket) {
-      totalQuantity += item.quantity
-    }
-    return totalQuantity;
+  public getBasket(): IBasketItem[] {
+    return this.basket.getValue();
+  }
+
+  public setBasket(basket: IBasketItem[]): void {
+    return this.basket.next(basket);
+  }
+
+  public getTotalItems(): void {
+    let basket: IBasketItem[];
+    let totalQuantity = 0;
+
+    this.basketItems.subscribe((data: IBasketItem[]) => {
+      if (!data) {
+        return;
+      }
+      basket = data;
+      for (const item of basket) {
+        totalQuantity += item.quantity;
+      }
+    });
+
+    return this.total.next(totalQuantity);
   }
 
   public removeItem(id: string, size: number): void {
@@ -34,40 +52,45 @@ export class BasketDataService {
     const item = this._findExactItem(basket, id, size);
 
     if (item && item.quantity > 1) {
-      item.quantity--
+      item.quantity--;
     } else if (item) {
-      basket.splice(basket.indexOf(item), 1)
+      basket.splice(basket.indexOf(item), 1);
     }
 
-    localStorage.setItem('basket', JSON.stringify(basket));
+    this.setBasket(basket);
   }
 
   public addItem(product: IProduct, size: number): void {
     let basket = this.getBasket();
 
     const item = {
-          product,
-          size,
-          quantity: 1
-        }
+      product,
+      size,
+      quantity: 1,
+    };
     if (basket) {
       // check if item already in bag
       const duplicate = this._findExactItem(basket, product.id, size);
 
       if (duplicate) {
-        duplicate.quantity++
+        duplicate.quantity++;
       } else {
         basket = [item, ...basket];
       }
     } else {
-      basket = [item]
+      basket = [item];
     }
 
-    localStorage.setItem('basket', JSON.stringify(basket));
+    // localStorage.setItem('basket', JSON.stringify(basket));
+    this.setBasket(basket);
+    this.getTotalItems();
   }
 
-  private _findExactItem(basket: IBasketItem[], id: string, size: number): IBasketItem | undefined {
-    return _.find(basket, (o) => o.product.id === id && o.size === size);
+  private _findExactItem(
+    basket: IBasketItem[],
+    id: string,
+    size: number
+  ): IBasketItem | undefined {
+    return basket.find((o) => o.product.id === id && o.size === size);
   }
-
 }

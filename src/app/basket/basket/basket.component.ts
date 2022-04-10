@@ -7,7 +7,7 @@ import { IProduct } from 'src/app/interfaces/product';
 @Component({
   selector: 'app-basket',
   templateUrl: './basket.component.html',
-  styleUrls: ['./basket.component.scss']
+  styleUrls: ['./basket.component.scss'],
 })
 export class BasketComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
@@ -21,8 +21,7 @@ export class BasketComponent implements OnInit {
   public items: IBasketItem[] = [];
   public innerWidth: number = 0;
 
-
-  constructor(private _basketService: BasketDataService) { }
+  constructor(private _basketService: BasketDataService) {}
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
@@ -40,11 +39,15 @@ export class BasketComponent implements OnInit {
   }
 
   public getTotal(): number {
-    return _.sumBy(this.items, (o) => (Number(o.product.price.amount) * o.quantity))
+    return _.sumBy(
+      this.items,
+      (o) => Number(o.product.price.amount) * o.quantity
+    );
   }
 
   private _getBasketItems(): void {
-    this.items = this._basketService.getBasket();
+    this._basketService.basketItems.subscribe((data: IBasketItem[]) => {
+      this.items = data;
+    });
   }
-
 }

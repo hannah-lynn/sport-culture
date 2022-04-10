@@ -1,27 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BasketDataService } from '../services/basket.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  styleUrls: ['./navigation.component.scss'],
 })
-export class NavigationComponent implements OnInit {
-
+export class NavigationComponent implements OnInit, OnDestroy {
   public totalItems: number = 0;
+  private _subscription!: Subscription;
 
-  public items: number = 0;
-
-  constructor(private _basketService: BasketDataService, private _router: Router) {
-  }
+  constructor(
+    private _basketService: BasketDataService,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.totalItems = this._basketService.getTotalItems();
+    this._basketService.totalItems.subscribe((data: number) => {
+      this.totalItems = data;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this._subscription.unsubscribe();
   }
 
   public goToBasket(): void {
-    this._router.navigateByUrl('/sport-culture/basket');
+    this._router.navigateByUrl('/basket');
   }
-
 }
