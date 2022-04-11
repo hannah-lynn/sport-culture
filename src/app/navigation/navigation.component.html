@@ -7,10 +7,10 @@
   <div class="nav-links-container">
     <ul>
       <li class="nav-link">
-        <a href="/" class="home-link">Home</a>
+        <a [href]="urlService.buildUrl('/')" class="home-link">Home</a>
       </li>
       <li class="nav-link">
-        <a href="shop" class="shop-link">Shop</a>
+        <a [href]="urlService.buildUrl('/shop')" class="shop-link">Shop</a>
       </li>
     </ul>
   </div>

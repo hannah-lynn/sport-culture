@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BasketDataService } from '../services/basket.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { UrlService } from '../services/url.service';
 
 @Component({
   selector: 'app-navigation',
@@ -14,7 +15,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   constructor(
     private _basketService: BasketDataService,
-    private _router: Router
+    private _router: Router,
+    public urlService: UrlService
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +30,6 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
 
   public goToBasket(): void {
-    this._router.navigateByUrl('/basket');
+    this._router.navigateByUrl(this.urlService.buildUrl('/basket'));
   }
 }
