@@ -46,8 +46,6 @@ export class BasketComponent implements OnInit {
   }
 
   private _getBasketItems(): void {
-    this._basketService.basketItems.subscribe((data: IBasketItem[]) => {
-      this.items = data;
-    });
+    this.items = this._basketService.getBasket();
   }
 }

@@ -32,7 +32,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   ) {
     this._basket = this._basketService.getBasket();
     this.recentlyViewed = this._recentService.getRecent();
-    console.log('this.recentlyViewed :', this.recentlyViewed);
   }
 
   ngOnInit(): void {

@@ -10,19 +10,19 @@ import { UrlService } from '../services/url.service';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit, OnDestroy {
-  public totalItems: number = 0;
+  public totalItems?: number;
   private _subscription!: Subscription;
 
   constructor(
     private _basketService: BasketDataService,
     private _router: Router,
     public urlService: UrlService
-  ) {}
+  ) {
+    this._fetchData();
+  }
 
   ngOnInit(): void {
-    this._basketService.totalItems.subscribe((data: number) => {
-      this.totalItems = data;
-    });
+    this._getInitialTotalItems();
   }
 
   ngOnDestroy(): void {
@@ -31,5 +31,17 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   public goToBasket(): void {
     this._router.navigateByUrl(this.urlService.buildUrl('/basket'));
+  }
+
+  private _getInitialTotalItems(): void {
+    this.totalItems = this._basketService.getTotalBasketQuantity();
+  }
+
+  private _fetchData(): void {
+    this._subscription = this._basketService.totalItems.subscribe(
+      (data: number) => {
+        this.totalItems = data;
+      }
+    );
   }
 }

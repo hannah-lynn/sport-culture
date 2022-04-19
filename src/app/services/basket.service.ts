@@ -22,28 +22,26 @@ export class BasketDataService implements OnDestroy {
   }
 
   public getBasket(): IBasketItem[] {
-    return this.basket.getValue();
+    return JSON.parse(<string>localStorage.getItem('basket'));
+  }
+
+  public getTotalBasketQuantity(): number {
+    return JSON.parse(<string>localStorage.getItem('totalQuantity'));
   }
 
   public setBasket(basket: IBasketItem[]): void {
+    localStorage.setItem('basket', JSON.stringify(basket));
     return this.basket.next(basket);
   }
 
-  public getTotalItems(): void {
-    let basket: IBasketItem[];
+  public setTotalItems(basket: IBasketItem[]): void {
     let totalQuantity = 0;
 
-    this.basketItems.subscribe((data: IBasketItem[]) => {
-      if (!data) {
-        return;
-      }
-      basket = data;
-      for (const item of basket) {
-        totalQuantity += item.quantity;
-      }
-    });
-
-    return this.total.next(totalQuantity);
+    for (const item of basket) {
+      totalQuantity += item.quantity;
+    }
+    localStorage.setItem('totalQuantity', JSON.stringify(totalQuantity));
+    this.total.next(totalQuantity);
   }
 
   public removeItem(id: string, size: number): void {
@@ -58,6 +56,7 @@ export class BasketDataService implements OnDestroy {
     }
 
     this.setBasket(basket);
+    this.setTotalItems(basket);
   }
 
   public addItem(product: IProduct, size: number): void {
@@ -81,9 +80,8 @@ export class BasketDataService implements OnDestroy {
       basket = [item];
     }
 
-    // localStorage.setItem('basket', JSON.stringify(basket));
     this.setBasket(basket);
-    this.getTotalItems();
+    this.setTotalItems(basket);
   }
 
   private _findExactItem(
