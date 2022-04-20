@@ -16,7 +16,7 @@ export class ProductCardComponent implements OnInit {
   ngOnInit(): void {}
 
   public openProduct(id: string): void {
-    // handles reload when same from same url with change of id
+    // handles reload when from same url with change of id
     this._router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
