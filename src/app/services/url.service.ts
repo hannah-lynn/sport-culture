@@ -6,15 +6,13 @@ export class UrlService {
   constructor() {}
 
   getUrlStart(): string {
-    const res = environment.production ? '' : '';
-    console.log('res 1:', res);
+    const res = environment.production ? '/sport-culture' : '';
     return res;
   }
 
   buildUrl(route?: string): string {
     const env = this.getUrlStart();
     const res = `${env}${route}`;
-    console.log('res 2:', res);
     return res;
   }
 }
