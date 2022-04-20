@@ -20,8 +20,6 @@ export class ProductCardComponent implements OnInit {
     this._router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-    void this._router.navigateByUrl(
-      this._urlService.buildUrl(`/shop/${Number(id)}`)
-    );
+    void this._router.navigate([this._urlService.buildUrl(`/shop/`) + id]);
   }
 }
