@@ -12,7 +12,7 @@ On the product details the user can see recently viewed products, they can click
 
 The user can view the basket by clicking on the bag on the right of the nav bar.
 
-If the uset tries to add an item to the bag without selecting a size an error will appear.
+If the user tries to add an item to the bag without selecting a size an error will appear.
 
 ## How
 
@@ -24,7 +24,7 @@ The product cards are displayed by looping through the products and the data is 
 
 A product details component was created to display more information. The product id was taken from the route so it could be found in the products - using lodash.
 
-The basket service was created with methods to add to the basket. This utilised localStorage, with more time I will update this to use rsjx.
+The basket service was created with methods to add to the basket. This utilised localStorage and rxjs.
 
 After this, the basket was created and styled, product info is taken from the data in localStorage.
 
@@ -32,7 +32,7 @@ Finally, recently viewed items has been created, which uses the same card from t
 
 ## To Do
 
-- [ ] Change to use rsjx Observable/BehaviourSubject for adding/updating the basket and basket total on nav
+- [x] Change to use rsjx Observable/BehaviourSubject for adding/updating the basket and basket total on nav
 - [x] Mobile styling on basket
 - [ ] Overall design to be improved
 - [ ] Better handling of size selection
