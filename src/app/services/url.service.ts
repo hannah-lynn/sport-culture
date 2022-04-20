@@ -6,7 +6,7 @@ export class UrlService {
   constructor() {}
 
   getUrlStart(): string {
-    const res = environment.production ? '/sport-culture' : '';
+    const res = environment.production ? '' : '';
     console.log('res 1:', res);
     return res;
   }
