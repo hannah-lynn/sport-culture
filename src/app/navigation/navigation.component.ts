@@ -30,7 +30,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
 
   public goToBasket(): void {
-    this._router.navigateByUrl(this.urlService.buildUrl('/basket'));
+    this._router.navigateByUrl('/basket');
   }
 
   private _getInitialTotalItems(): void {
